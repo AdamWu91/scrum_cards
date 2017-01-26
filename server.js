@@ -8,20 +8,30 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/dist/index.html')
 })
 
-let selectedCardsPoints = []
+let selectedCards = [],
+    selectedPoints = [],
+    result = 0
+
+io.on('connect', function (socket) {
+    socket.emit('initSocket', { cards: selectedCards});
+});
 
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+  // console.log('a user connected');
+  // socket.on('disconnect', function(){
+  //   console.log('user disconnected');
+  // });
+  socket.on('add_card', function(card){
+    console.log("socket")
+  	selectedCards.push(card)
+    selectedPoints.push(card.point)
+    result = Math.max(...selectedPoints)
+  	socket.broadcast.emit('add_card', card)
   });
-  socket.on('move_card', function(params){
-  	selectedCardsPoints.push(params.points)
-  	io.emit('update_cards', {'cardId': params.points, 'points': Math.max(...selectedCardsPoints)})
-  });
-  socket.on('reset', function(params){
-  	io.emit('update_cards', {'cardId': null,'points': 0, 'type': 'reset'})
-  });
+
+  // io.emit('initSocket', {'cards': selectedCards})
+
+
   
 });
 

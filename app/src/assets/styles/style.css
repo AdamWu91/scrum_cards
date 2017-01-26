@@ -1,0 +1,16 @@
+.cards-wrap {
+	border: 1px solid black;
+	padding: 15px;
+	min-height: 250px;
+	margin-bottom: 10px;
+}
+
+.card {
+	border: 1px solid red;
+	display: inline-block;
+	margin-right: 6px;
+	text-align: center;
+	padding: 6px;
+	height: 180px;
+	width: 125px;
+}

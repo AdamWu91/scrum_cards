@@ -1,17 +1,26 @@
 const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-  entry: './app/src',
+  entry: {
+    app: './app/src/index.js',
+    libs: [
+      'socket.io-client'
+    ]
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: '[name].js',
     publicPath: "/static/"
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.js?$/,
         include: [
           path.resolve(__dirname, "app")
         ],
