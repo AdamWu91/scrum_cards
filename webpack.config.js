@@ -2,7 +2,7 @@ const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
-    app: './app/src/index.js',
+    app: './app/src/app.js',
     libs: [
       'socket.io-client'
     ]
@@ -27,7 +27,6 @@ module.exports = {
         exclude: [
           path.resolve(__dirname, "app/dist")
         ],
-        // issuer: { test, include, exclude },
         loader: "babel-loader",
         options: {
           presets: ["es2015"]

@@ -4,6 +4,9 @@
   "description": "trololo",
   "main": "index.js",
   "scripts": {
+    "watch": "./node_modules/.bin/webpack --watch",
+    "server": "node server.js",
+    "start":"npm run watch & npm run server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Adam Wasilewski",
