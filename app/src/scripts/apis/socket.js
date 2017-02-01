@@ -6,6 +6,7 @@ export let initSocket = (send, done) => {
     if (data.cards.length > 0) {
       send('app:add', { 'initSocket': true, 'cards': data.cards }, (err) => {})
     }
+    send('users:update', data.users, (err) => {})
   })
 }
 
@@ -20,5 +21,11 @@ export let addCardBySocket = (send, done) => {
     card.addCardBySocket = true
 		send('app:add', card, (err) => {})
 	})
+}
+
+export let updateUsersBySocket = (send, done) => {
+  socket.on('update_users', (users = []) => {
+    send('users:update', users, (err) => {})
+  })
 }
 

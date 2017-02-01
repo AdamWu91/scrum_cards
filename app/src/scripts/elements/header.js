@@ -4,16 +4,11 @@ module.exports = function (state, prev, send) {
   return html`
     <div class="header">
       Wynik: <strong>${ state.app.result }</strong>
-      Jesteś: <strong>${ state.app.user }</strong>
-      Podaj login: <input type="text" oninput=${update}/>
+      Jesteś: <strong>${ state.auth.nick }</strong>
       <button onclick=${nextTask}>Nastepne zadanie</button>
     </div>
   `
-  function update (e) {
-    send('app:setLogin', e.target.value)
-  }
-
-  function nextTask () {
+  function nextTask() {
     send('app:reset')
   }
 }

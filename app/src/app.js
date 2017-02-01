@@ -5,8 +5,13 @@ const app = choo()
 const socket = io()
 
 app.model(require('./scripts/modules/main'))
+app.model(require('./scripts/modules/users'))
+app.model(require('./scripts/modules/authorization'))
 
-app.router(['/', require('./scripts/pages/home')])
+app.router([
+	['/', require('./scripts/pages/login')],
+	['/:cards', require('./scripts/pages/home')]
+])
 
 const tree = app.start()
 document.body.appendChild(tree)

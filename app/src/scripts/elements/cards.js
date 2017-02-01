@@ -8,7 +8,7 @@ module.exports = function (state, prev, send) {
 
 	let dropCard = (data = {}) => {
 		dragOverSelectedPointsBox = false
-		data.user = state.app.user
+		data.user = state.auth.nick
 		send('app:add', data)
 		console.log("drop")
 	}

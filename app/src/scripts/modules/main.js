@@ -1,6 +1,5 @@
 import { addCard, resetCard } from '../apis/card'
 import { socket, initSocket, resetBySocket, addCardBySocket } from '../apis/socket'
-import { setNick } from '../apis/user'
 
 module.exports = {
   namespace: 'app',
@@ -14,7 +13,6 @@ module.exports = {
   },
   reducers: {
     add: addCard,
-    setLogin: setNick,
     reset: resetCard
   },
   subscriptions: {
