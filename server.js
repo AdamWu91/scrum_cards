@@ -29,7 +29,13 @@ io.on('connection', function(socket){
   	socket.broadcast.emit('add_card', card)
   });
 
-  // io.emit('initSocket', {'cards': selectedCards})
+  socket.on('reset', function(card){
+    selectedCards= []
+    selectedPoints = []
+    result = 0
+    socket.broadcast.emit('reset', [])
+  });
+
 
 
   

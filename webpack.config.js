@@ -2,10 +2,7 @@ const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
-    app: './app/src/app.js',
-    libs: [
-      'socket.io-client'
-    ]
+    app: './app/src/app.js'
   },
   output: {
     filename: 'bundle.js',

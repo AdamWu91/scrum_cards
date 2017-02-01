@@ -1,5 +1,13 @@
 import { socket } from '../apis/socket'
 
+let addCardOnInitApp = (state, data = []) => {
+  state.initSocket = true
+  data.cards.forEach((el) => {
+    state.selectedCards.push(el)
+    state.selectedPoints.push(el.point)
+  })
+}
+
 export let resetCard = () => {
   socket.emit('reset')
   return {
@@ -14,16 +22,13 @@ export let addCard = (state, data) => {
     user: data.user,
     point: data.point
   }
-  if (!data.fromSocket) {
-  	socket.emit('add_card', newCard)
-  }
-  if (data.cards) {
-    state.initSocket = true
-    data.cards.forEach((el) => {
-      state.selectedCards.push(el)
-      state.selectedPoints.push(el.point)
-    })
+
+  if (data.initSocket) {
+    addCardOnInitApp(state, data)
   } else {
+    if (!data.addCardBySocket) {
+      socket.emit('add_card', newCard)
+    }
     state.selectedCards.push(newCard)
     state.selectedPoints.push(newCard.point)
   }
@@ -33,3 +38,5 @@ export let addCard = (state, data) => {
     'initSocket': state.initSocket
   }
 }
+
+
